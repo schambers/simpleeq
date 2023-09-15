@@ -36,7 +36,7 @@ void LookAndFeel::drawRotarySlider(juce::Graphics &g,
         
         Rectangle<float> r;
         r.setLeft(center.getX() - 2);
-        r.setRight(center.getY() + 2);
+        r.setRight(center.getX() + 2);
         r.setTop(bounds.getY());
         r.setBottom(center.getY() - rswl->getTextHeight() * 1.5);
         
@@ -66,7 +66,6 @@ void LookAndFeel::drawRotarySlider(juce::Graphics &g,
 }
 
 //==============================================================================
-
 void RotarySliderWithLabels::paint(juce::Graphics &g)
 {
     using namespace juce;
@@ -107,7 +106,7 @@ juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
 
 juce::String RotarySliderWithLabels::getDisplayString() const
 {
-    return "text";
+    return juce::String(getValue());
 }
 
 //==============================================================================
@@ -261,7 +260,6 @@ SimpleEQAudioProcessorEditor::~SimpleEQAudioProcessorEditor()
 {
 }
 
-//==============================================================================
 void SimpleEQAudioProcessorEditor::paint (juce::Graphics& g)
 {
     using namespace juce;
