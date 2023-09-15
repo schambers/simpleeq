@@ -1,14 +1,12 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+//==============================================================================
+//
+// LookAndFeel
+//
+//==============================================================================
 void LookAndFeel::drawRotarySlider(juce::Graphics &g,
                                    int x,
                                    int y,
@@ -66,6 +64,10 @@ void LookAndFeel::drawRotarySlider(juce::Graphics &g,
 }
 
 //==============================================================================
+//
+// RotarySliderWithLabels
+//
+//==============================================================================
 void RotarySliderWithLabels::paint(juce::Graphics &g)
 {
     using namespace juce;
@@ -109,6 +111,10 @@ juce::String RotarySliderWithLabels::getDisplayString() const
     return juce::String(getValue());
 }
 
+//==============================================================================
+//
+// ResponseCurveComponent
+//
 //==============================================================================
 ResponseCurveComponent::ResponseCurveComponent(SimpleEQAudioProcessor& p) : audioProcessor(p)
 {
@@ -228,6 +234,10 @@ void ResponseCurveComponent::paint (juce::Graphics& g)
 }
 
 //==============================================================================
+//
+// SimpleEQAudioProcessorEditor
+//
+//==============================================================================
 SimpleEQAudioProcessorEditor::SimpleEQAudioProcessorEditor (SimpleEQAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p),
 peakFreqSlider(*audioProcessor.apvts.getParameter("Peak Freq"), "Hz"),
@@ -248,7 +258,7 @@ highCutSlopeSliderAttachment(audioProcessor.apvts, "HighCut Slope", highCutSlope
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    for (auto* comp : getComps())
+    for (auto* comp : getComponents())
     {
         addAndMakeVisible(comp);
     }
@@ -291,7 +301,7 @@ void SimpleEQAudioProcessorEditor::resized()
 }
 
 
-std::vector<juce::Component*> SimpleEQAudioProcessorEditor::getComps()
+std::vector<juce::Component*> SimpleEQAudioProcessorEditor::getComponents()
 {
     return {
         &peakFreqSlider,

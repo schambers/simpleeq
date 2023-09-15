@@ -108,7 +108,7 @@ private:
     lowCutSlopeSliderAttachment,
     highCutSlopeSliderAttachment;
     
-    std::vector<juce::Component*> getComps();
+    std::vector<juce::Component*> getComponents();
 
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SimpleEQAudioProcessorEditor)
